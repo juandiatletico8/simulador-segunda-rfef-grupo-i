@@ -799,12 +799,13 @@ function mostrarPartidos() {
   contenedor.appendChild(bloque);
 
   const inputs = contenedor.querySelectorAll('input[type="number"]');
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("input", function () {
-      leerResultados();
-      calcularClasificacion();
-    });
-  }
+for (let i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener("input", function () {
+    leerResultados();
+    calcularClasificacion();
+    actualizarBotonesJornada();
+  });
+}
 
   actualizarBotonesJornada();
 }
@@ -822,6 +823,8 @@ function leerResultados() {
     partidos[i].gLocal = valorLocal === "" ? null : parseInt(valorLocal, 10);
     partidos[i].gVis = valorVis === "" ? null : parseInt(valorVis, 10);
   }
+
+  actualizarBotonesJornada();
 }
 
 function obtenerClasificacionActual() {
@@ -1024,7 +1027,6 @@ function actualizarBotonesJornada() {
 
   if (!btnAnterior || !btnSiguiente) return;
 
-  // Si estamos en la pantalla final
   if (simulacionFinalizada) {
     btnAnterior.disabled = false;
     btnAnterior.style.display = "";
@@ -1033,18 +1035,18 @@ function actualizarBotonesJornada() {
   }
 
   const indice = jornadasDisponibles.indexOf(jornadaActual);
+  const ultimaJornada = jornadasDisponibles[jornadasDisponibles.length - 1];
+  const estamosEnUltima = jornadaActual === ultimaJornada;
+  const jornadaActualCompleta = jornadaCompleta(jornadaActual);
 
   btnAnterior.style.display = "";
   btnSiguiente.style.display = "";
 
   btnAnterior.disabled = indice <= 0;
 
-  const esUltimaJornada = indice === jornadasDisponibles.length - 1;
-  const ultimaJornadaCompleta = jornadaCompleta(jornadaActual);
-
-  if (esUltimaJornada && ultimaJornadaCompleta) {
-    btnSiguiente.disabled = false;
+  if (estamosEnUltima) {
     btnSiguiente.textContent = "Finalizar";
+    btnSiguiente.disabled = !jornadaActualCompleta;
   } else {
     btnSiguiente.textContent = "→";
     btnSiguiente.disabled = indice === -1 || indice >= jornadasDisponibles.length - 1;
