@@ -1199,26 +1199,31 @@ window.onload = function () {
 };
 
 function descargarResumenFinal() {
-  const resumen = document.getElementById("resumen-final-compartir");
+  const clasificacion = document.getElementById("clasificacion-compartir");
 
-  if (!resumen) {
-    alert("No se ha encontrado el resumen final.");
+  if (!clasificacion) {
+    alert("No se ha encontrado la clasificación.");
     return;
   }
 
-  html2canvas(resumen, {
+  if (typeof html2canvas === "undefined") {
+    alert("html2canvas no está cargado.");
+    return;
+  }
+
+  html2canvas(clasificacion, {
     backgroundColor: "#ffffff",
     scale: 2,
     useCORS: true
   }).then((canvas) => {
     const enlace = document.createElement("a");
     enlace.href = canvas.toDataURL("image/png");
-    enlace.download = "pronostico-2rfef-grupo1.png";
+    enlace.download = "clasificacion-final-2rfef-grupo1.png";
     document.body.appendChild(enlace);
     enlace.click();
     document.body.removeChild(enlace);
   }).catch((error) => {
-    console.error(error);
+    console.error("Error al generar la imagen:", error);
     alert("Error al generar la imagen.");
   });
 }
