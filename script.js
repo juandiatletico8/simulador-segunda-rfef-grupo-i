@@ -383,15 +383,15 @@ const escudos = {
 { jornada: 31, local: "Bergantiños", visitante: "Sarriana", gLocal: 0, gVis: 1 },
 
 // Jornada 32
-  { jornada: 32, local: "Atlético Astorga", visitante: "Burgos Promesas", gLocal: null, gVis: null },
-  { jornada: 32, local: "Oviedo Vetusta", visitante: "Bergantiños", gLocal: null, gVis: null },
-  { jornada: 32, local: "Real Valladolid Promesas", visitante: "Langreo", gLocal: null, gVis: null },
-  { jornada: 32, local: "Real Ávila", visitante: "Gimnástica Segoviana", gLocal: null, gVis: null },
-  { jornada: 32, local: "Salamanca CF UDS", visitante: "Deportivo Fabril", gLocal: null, gVis: null },
-  { jornada: 32, local: "Sámano", visitante: "CD Numancia", gLocal: null, gVis: null },
-  { jornada: 32, local: "Coruxo", visitante: "Rayo Cantabria", gLocal: null, gVis: null },
-  { jornada: 32, local: "Sarriana", visitante: "Marino de Luanco", gLocal: null, gVis: null },
-  { jornada: 32, local: "UD Ourense", visitante: "Lealtad", gLocal: null, gVis: null },
+  { jornada: 32, local: "Atlético Astorga", visitante: "Burgos Promesas", gLocal: 0, gVis: 0 },
+  { jornada: 32, local: "Oviedo Vetusta", visitante: "Bergantiños", gLocal: 1, gVis: 2 },
+  { jornada: 32, local: "Real Valladolid Promesas", visitante: "Langreo", gLocal: 3, gVis: 0 },
+  { jornada: 32, local: "Real Ávila", visitante: "Gimnástica Segoviana", gLocal: 2, gVis: 1 },
+  { jornada: 32, local: "Salamanca CF UDS", visitante: "Deportivo Fabril", gLocal: 0, gVis: 1 },
+  { jornada: 32, local: "Sámano", visitante: "CD Numancia", gLocal: 0, gVis: 3 },
+  { jornada: 32, local: "Coruxo", visitante: "Rayo Cantabria", gLocal: 1, gVis: 1 },
+  { jornada: 32, local: "Sarriana", visitante: "Marino de Luanco", gLocal: 0, gVis: 1 },
+  { jornada: 32, local: "UD Ourense", visitante: "Lealtad", gLocal: 3, gVis: 1 },
 
 // Jornada 33
   { jornada: 33, local: "Atlético Astorga", visitante: "Sarriana", gLocal: null, gVis: null },
