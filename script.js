@@ -372,15 +372,15 @@ const escudos = {
   { jornada: 30, local: "Coruxo", visitante: "Marino de Luanco", gLocal: 1, gVis: 2 },
 
 // Jornada 31
-{ jornada: 31, local: "Deportivo Fabril", visitante: "UD Ourense", gLocal: 3, gVis: 0 },
-{ jornada: 31, local: "Rayo Cantabria", visitante: "Atlético Astorga", gLocal: 3, gVis: 2 },
-{ jornada: 31, local: "Langreo", visitante: "Sámano", gLocal: 4, gVis: 1 },
-{ jornada: 31, local: "Marino de Luanco", visitante: "Oviedo Vetusta", gLocal: 1, gVis: 1 },
-{ jornada: 31, local: "Burgos Promesas", visitante: "Coruxo", gLocal: 1, gVis: 0 },
-{ jornada: 31, local: "CD Numancia", visitante: "Real Ávila", gLocal: 2, gVis: 1 },
-{ jornada: 31, local: "Lealtad", visitante: "Real Valladolid Promesas", gLocal: 2, gVis: 3 },
-{ jornada: 31, local: "Gimnástica Segoviana", visitante: "Salamanca CF UDS", gLocal: 0, gVis: 1 },
-{ jornada: 31, local: "Bergantiños", visitante: "Sarriana", gLocal: 0, gVis: 1 },
+  { jornada: 31, local: "Deportivo Fabril", visitante: "UD Ourense", gLocal: 3, gVis: 0 },
+  { jornada: 31, local: "Rayo Cantabria", visitante: "Atlético Astorga", gLocal: 3, gVis: 2 },
+  { jornada: 31, local: "Burgos Promesas", visitante: "Coruxo", gLocal: 1, gVis: 0 },
+  { jornada: 31, local: "Langreo", visitante: "Sámano", gLocal: 4, gVis: 1 },
+  { jornada: 31, local: "Marino de Luanco", visitante: "Oviedo Vetusta", gLocal: 1, gVis: 1 },
+  { jornada: 31, local: "CD Numancia", visitante: "Real Ávila", gLocal: 2, gVis: 1 },
+  { jornada: 31, local: "Gimnástica Segoviana", visitante: "Salamanca CF UDS", gLocal: 0, gVis: 1 },
+  { jornada: 31, local: "Lealtad", visitante: "Real Valladolid Promesas", gLocal: 2, gVis: 3 },
+  { jornada: 31, local: "Bergantiños", visitante: "Sarriana", gLocal: 0, gVis: 1 },
 
 // Jornada 32
   { jornada: 32, local: "Atlético Astorga", visitante: "Burgos Promesas", gLocal: 0, gVis: 0 },
@@ -389,7 +389,7 @@ const escudos = {
   { jornada: 32, local: "Real Ávila", visitante: "Gimnástica Segoviana", gLocal: 2, gVis: 1 },
   { jornada: 32, local: "Salamanca CF UDS", visitante: "Deportivo Fabril", gLocal: 0, gVis: 1 },
   { jornada: 32, local: "Sámano", visitante: "CD Numancia", gLocal: 0, gVis: 3 },
-  { jornada: 32, local: "Coruxo", visitante: "Rayo Cantabria", gLocal: 1, gVis: 1 },
+  { jornada: 32, local: "Coruxo", visitante: "Rayo Cantabria", gLocal: 3, gVis: 1 },
   { jornada: 32, local: "Sarriana", visitante: "Marino de Luanco", gLocal: 0, gVis: 1 },
   { jornada: 32, local: "UD Ourense", visitante: "Lealtad", gLocal: 3, gVis: 1 },
 
@@ -799,13 +799,12 @@ function mostrarPartidos() {
   contenedor.appendChild(bloque);
 
   const inputs = contenedor.querySelectorAll('input[type="number"]');
-for (let i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener("input", function () {
-    leerResultados();
-    calcularClasificacion();
-    actualizarBotonesJornada();
-  });
-}
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("input", function () {
+      leerResultados();
+      calcularClasificacion();
+    });
+  }
 
   actualizarBotonesJornada();
 }
@@ -823,8 +822,6 @@ function leerResultados() {
     partidos[i].gLocal = valorLocal === "" ? null : parseInt(valorLocal, 10);
     partidos[i].gVis = valorVis === "" ? null : parseInt(valorVis, 10);
   }
-
-  actualizarBotonesJornada();
 }
 
 function obtenerClasificacionActual() {
@@ -848,10 +845,10 @@ function renderizarResumenFinal(clasificacion) {
   const contenedor = document.getElementById("partidos");
   if (!contenedor) return;
 
-  const campeon = clasificacion[0];
-  const playoff = clasificacion.slice(1, 5);
-  const playOut = clasificacion[12];
-  const descenso = clasificacion.slice(13);
+  const campeon = clasificacion[0]; // 1er puesto
+  const playoff = clasificacion.slice(1, 5); // puestos 2-5
+  const playOut = clasificacion[12]; // puesto 13
+  const descenso = clasificacion.slice(13); // puestos 14-18
 
   function renderEquipoResumen(equipo) {
     return `
@@ -863,7 +860,7 @@ function renderizarResumenFinal(clasificacion) {
   }
 
   contenedor.innerHTML = `
-    <div class="resumen-final" id="resumen-final-compartir">
+    <div class="resumen-final">
       <h3>Resumen final de la liga</h3>
 
       <div class="linea-resumen">
@@ -896,16 +893,6 @@ function renderizarResumenFinal(clasificacion) {
           <strong>Descienden a 3ª RFEF:</strong>
           ${descenso.map(renderEquipoResumen).join("")}
         </div>
-      </div>
-
-      <!-- MENSAJE -->
-      <p class="mensaje-final">
-        Descarga y envía a Juandi tu pronóstico y a final de temporada comprobará tu acierto.
-      </p>
-
-      <!-- BOTÓN -->
-      <div class="acciones-final">
-        <button onclick="descargarResumenFinal()">Descargar imagen</button>
       </div>
     </div>
   `;
@@ -959,37 +946,27 @@ function calcularClasificacion() {
     posicionesAntes[fila.dataset.equipo] = fila.getBoundingClientRect().top;
   });
 
-  tbody.innerHTML = "";
+  tbody.innerHTML = ""; // Limpiar la tabla
 
   for (let i = 0; i < clasificacion.length; i++) {
     const e = clasificacion[i];
     const tr = document.createElement("tr");
     tr.dataset.equipo = e.equipo;
 
+    // Colorear las filas según la posición
     if (i === 0) {
-      tr.classList.add("pos-ascenso");
+      tr.classList.add("pos-ascenso");  // 1er puesto (ascenso)
     } else if (i >= 1 && i <= 4) {
-      tr.classList.add("pos-playoff");
+      tr.classList.add("pos-playoff");  // puestos 2 a 5 (playoff)
     } else if (i === 12) {
-      tr.classList.add("pos-playout");
+      tr.classList.add("pos-playout");  // puesto 13 (play-out)
     } else if (i >= 13 && i <= 17) {
-      tr.classList.add("pos-descenso");
+      tr.classList.add("pos-descenso");  // puestos 14 a 18 (descenso)
     }
 
-    let flecha = "";
-    const posicionBase = posicionesBaseJornada[e.equipo];
-    const posicionActual = i + 1;
-
-    if (posicionBase !== undefined) {
-      if (posicionActual < posicionBase) {
-        flecha = '<span class="flecha-sube">▲</span>';
-      } else if (posicionActual > posicionBase) {
-        flecha = '<span class="flecha-baja">▼</span>';
-      }
-    }
-
+    // Rellenar las celdas de la fila sin flechas ni textos adicionales
     tr.innerHTML =
-      `<td>${posicionActual} ${flecha}</td>
+      `<td>${i + 1}</td>
        <td>
          <div class="equipo-con-escudo">
            <img class="escudo" src="${obtenerEscudo(e.equipo)}" alt="${e.equipo}">
@@ -1027,6 +1004,7 @@ function actualizarBotonesJornada() {
 
   if (!btnAnterior || !btnSiguiente) return;
 
+  // Si estamos en la pantalla final
   if (simulacionFinalizada) {
     btnAnterior.disabled = false;
     btnAnterior.style.display = "";
@@ -1035,18 +1013,18 @@ function actualizarBotonesJornada() {
   }
 
   const indice = jornadasDisponibles.indexOf(jornadaActual);
-  const ultimaJornada = jornadasDisponibles[jornadasDisponibles.length - 1];
-  const estamosEnUltima = jornadaActual === ultimaJornada;
-  const jornadaActualCompleta = jornadaCompleta(jornadaActual);
 
   btnAnterior.style.display = "";
   btnSiguiente.style.display = "";
 
   btnAnterior.disabled = indice <= 0;
 
-  if (estamosEnUltima) {
+  const esUltimaJornada = indice === jornadasDisponibles.length - 1;
+  const ultimaJornadaCompleta = jornadaCompleta(jornadaActual);
+
+  if (esUltimaJornada && ultimaJornadaCompleta) {
+    btnSiguiente.disabled = false;
     btnSiguiente.textContent = "Finalizar";
-    btnSiguiente.disabled = !jornadaActualCompleta;
   } else {
     btnSiguiente.textContent = "→";
     btnSiguiente.disabled = indice === -1 || indice >= jornadasDisponibles.length - 1;
@@ -1199,33 +1177,3 @@ window.onload = function () {
     btnSiguiente.addEventListener("click", irAJornadaSiguiente);
   }
 };
-
-function descargarResumenFinal() {
-  const clasificacion = document.getElementById("clasificacion-compartir");
-
-  if (!clasificacion) {
-    alert("No se ha encontrado la clasificación.");
-    return;
-  }
-
-  if (typeof html2canvas === "undefined") {
-    alert("html2canvas no está cargado.");
-    return;
-  }
-
-  html2canvas(clasificacion, {
-    backgroundColor: "#ffffff",
-    scale: 2,
-    useCORS: true
-  }).then((canvas) => {
-    const enlace = document.createElement("a");
-    enlace.href = canvas.toDataURL("image/png");
-    enlace.download = "clasificacion-final-2rfef-grupo1.png";
-    document.body.appendChild(enlace);
-    enlace.click();
-    document.body.removeChild(enlace);
-  }).catch((error) => {
-    console.error("Error al generar la imagen:", error);
-    alert("Error al generar la imagen.");
-  });
-}
