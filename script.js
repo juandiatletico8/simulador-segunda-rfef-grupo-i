@@ -394,15 +394,15 @@ const escudos = {
   { jornada: 32, local: "UD Ourense", visitante: "Lealtad", gLocal: 3, gVis: 1 },
 
 // Jornada 33
-  { jornada: 33, local: "Atlético Astorga", visitante: "Sarriana", gLocal: null, gVis: null },
-  { jornada: 33, local: "Bergantiños", visitante: "UD Ourense", gLocal: null, gVis: null },
-  { jornada: 33, local: "Burgos Promesas", visitante: "Salamanca CF UDS", gLocal: null, gVis: null },
-  { jornada: 33, local: "Deportivo Fabril", visitante: "Real Valladolid Promesas", gLocal: null, gVis: null },
-  { jornada: 33, local: "Gimnástica Segoviana", visitante: "Oviedo Vetusta", gLocal: null, gVis: null },
-  { jornada: 33, local: "Langreo", visitante: "CD Numancia", gLocal: null, gVis: null },
-  { jornada: 33, local: "Lealtad", visitante: "Coruxo", gLocal: null, gVis: null },
-  { jornada: 33, local: "Marino de Luanco", visitante: "Sámano", gLocal: null, gVis: null },
-  { jornada: 33, local: "Rayo Cantabria", visitante: "Real Ávila", gLocal: null, gVis: null },
+  { jornada: 33, local: "Atlético Astorga", visitante: "Sarriana", gLocal: 1, gVis: 0 },
+  { jornada: 33, local: "Bergantiños", visitante: "UD Ourense", gLocal: 1, gVis: 3 },
+  { jornada: 33, local: "Burgos Promesas", visitante: "Salamanca CF UDS", gLocal: 2, gVis: 1 },
+  { jornada: 33, local: "Deportivo Fabril", visitante: "Real Valladolid Promesas", gLocal: 0, gVis: 1 },
+  { jornada: 33, local: "Gimnástica Segoviana", visitante: "Oviedo Vetusta", gLocal: 1, gVis: 0 },
+  { jornada: 33, local: "Langreo", visitante: "CD Numancia", gLocal: 1, gVis: 1 },
+  { jornada: 33, local: "Lealtad", visitante: "Coruxo", gLocal: 2, gVis: 2 },
+  { jornada: 33, local: "Marino de Luanco", visitante: "Sámano", gLocal: 4, gVis: 1 },
+  { jornada: 33, local: "Rayo Cantabria", visitante: "Real Ávila", gLocal: 4, gVis: 1 },
 
 // Jornada 34
   { jornada: 34, local: "Coruxo", visitante: "Gimnástica Segoviana", gLocal: null, gVis: null },
